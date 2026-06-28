@@ -874,15 +874,22 @@ window.addEventListener("load", () => {
     })();
   </script>
 <!-- Your existing app content above -->
-<script>
 const CURRENT_VERSION = "1.0.0";
+
 async function checkForUpdate() {
   try {
     const res = await fetch("https://eman1992hub.github.io/AML-MineGuard./version.json");
     const data = await res.json();
 
-    if (data.version && data.version !== CURRENT_VERSION)
-    function showUpdateDialog(data) {
+    if (data.version && data.version !== CURRENT_VERSION) {
+      showUpdateDialog(data);
+    }
+  } catch (err) {
+    console.log("Update check failed", err);
+  }
+}
+
+function showUpdateDialog(data) {
   const message =
     "🚨 NEW UPDATE AVAILABLE\n\n" +
     data.message +
@@ -896,25 +903,10 @@ async function checkForUpdate() {
   if (update) {
     window.location.href = data.apk_url;
   }
-    }
-  } catch (err) {
-    console.log("Update check failed", err);
-  }
-}
-
-function showUpdateDialog(data) {
-  const update = confirm(
-    data.message + "\n\nDo you want to update now?"
-  );
-
-  if (update) {
-    window.location.href = data.apk_url;
-  }
 }
 
 window.addEventListener("load", () => {
   setTimeout(checkForUpdate, 2000);
 });
-</script>
 </body>
 </html>
