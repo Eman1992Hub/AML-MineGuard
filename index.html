@@ -881,7 +881,7 @@ async function checkForUpdate() {
     const res = await fetch("https://eman1992hub.github.io/AML-MineGuard./version.json");
     const data = await res.json();
 
-    if (data.version !== CURRENT_VERSION) {
+    if (data.version && data.version !== CURRENT_VERSION) {
       showUpdateDialog(data);
     }
   } catch (err) {
@@ -899,7 +899,9 @@ function showUpdateDialog(data) {
   }
 }
 
-window.addEventListener("load", checkForUpdate);
+window.addEventListener("load", () => {
+  setTimeout(checkForUpdate, 2000);
+});
 </script>
 </body>
 </html>
