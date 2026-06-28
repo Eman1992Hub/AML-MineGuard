@@ -881,8 +881,21 @@ async function checkForUpdate() {
     const res = await fetch("https://eman1992hub.github.io/AML-MineGuard./version.json");
     const data = await res.json();
 
-    if (data.version && data.version !== CURRENT_VERSION) {
-      showUpdateDialog(data);
+    if (data.version && data.version !== CURRENT_VERSION)
+    function showUpdateDialog(data) {
+  const message =
+    "🚨 NEW UPDATE AVAILABLE\n\n" +
+    data.message +
+    "\n\nCurrent version: " +
+    CURRENT_VERSION +
+    "\nNew version: " +
+    data.version;
+
+  const update = confirm(message);
+
+  if (update) {
+    window.location.href = data.apk_url;
+  }
     }
   } catch (err) {
     console.log("Update check failed", err);
