@@ -14,10 +14,66 @@
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet" />
 </head>
 <body>
+<script>
+window.addEventListener("load", () => {
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker
+      .register("./service-worker.js")
+      .then(() => console.log("SW Registered"))
+      .catch(console.error);
+  }
+});
+</script>
   <!-- SPLASH SCREEN -->
   <div id="splash">
     <div class="splash-inner">
-      <div class="splash-icon">⛏️</div>
+      <div class="splash-icon" style="line-height:1;margin-bottom:4px;">
+        <svg class="exc-svg-splash" viewBox="0 0 120 78" xmlns="http://www.w3.org/2000/svg" width="88" height="57" style="overflow:visible;filter:drop-shadow(0 4px 14px rgba(245,197,24,0.4))">
+          <!-- Tracks -->
+          <rect x="6" y="59" width="72" height="13" rx="6.5" fill="#1e2035" stroke="#f5c518" stroke-width="1.6"/>
+          <circle cx="13" cy="65.5" r="6.2" fill="#12141f" stroke="#f5c518" stroke-width="1.6"/>
+          <circle cx="71" cy="65.5" r="6.2" fill="#12141f" stroke="#f5c518" stroke-width="1.6"/>
+          <circle cx="29" cy="65.5" r="3.8" fill="#1e2035" stroke="#f5c518" stroke-width="1"/>
+          <circle cx="46" cy="65.5" r="3.8" fill="#1e2035" stroke="#f5c518" stroke-width="1"/>
+          <circle cx="59" cy="65.5" r="3.8" fill="#1e2035" stroke="#f5c518" stroke-width="1"/>
+          <!-- Machine body -->
+          <rect x="10" y="37" width="54" height="26" rx="3" fill="#e8b800" stroke="#b88e00" stroke-width="1.5"/>
+          <!-- Cab window -->
+          <rect x="42" y="40" width="18" height="14" rx="2" fill="#1a2a3a" stroke="#2ec4b6" stroke-width="1.2"/>
+          <line x1="51" y1="40" x2="51" y2="54" stroke="#2ec4b6" stroke-width="0.8" opacity="0.5"/>
+          <!-- Cab roof -->
+          <rect x="40" y="33" width="26" height="7" rx="2" fill="#d4a800" stroke="#b88e00" stroke-width="1.2"/>
+          <!-- Counterweight block -->
+          <rect x="7" y="41" width="15" height="17" rx="2" fill="#c49a00" stroke="#906e00" stroke-width="1"/>
+          <!-- ANIMATED BOOM GROUP -->
+          <g style="transform-origin:57px 37px;animation:exc-boom-a 2.4s ease-in-out infinite">
+            <line x1="57" y1="37" x2="90" y2="14" stroke="#d4a800" stroke-width="6.5" stroke-linecap="round"/>
+            <line x1="56" y1="37" x2="89" y2="14" stroke="#e8b800" stroke-width="3" stroke-linecap="round" opacity="0.4"/>
+            <g style="transform-origin:90px 14px;animation:exc-arm-a 2.4s ease-in-out infinite">
+              <line x1="90" y1="14" x2="108" y2="33" stroke="#c49a00" stroke-width="5.5" stroke-linecap="round"/>
+              <g style="transform-origin:108px 33px;animation:exc-bucket-a 2.4s ease-in-out infinite">
+                <path d="M108 33 L121 37 L117 54 L104 52 Z" fill="#f5c518" stroke="#b88e00" stroke-width="1.6"/>
+                <line x1="107" y1="52" x2="105" y2="60" stroke="#8a6600" stroke-width="2.2" stroke-linecap="round"/>
+                <line x1="112" y1="53" x2="111" y2="61" stroke="#8a6600" stroke-width="2.2" stroke-linecap="round"/>
+                <line x1="117" y1="52" x2="117" y2="60" stroke="#8a6600" stroke-width="2.2" stroke-linecap="round"/>
+              </g>
+            </g>
+          </g>
+          <!-- Hydraulic cylinders (static look) -->
+          <line x1="62" y1="37" x2="82" y2="20" stroke="#777" stroke-width="2.5" stroke-linecap="round" opacity="0.6"/>
+          <line x1="90" y1="14" x2="100" y2="27" stroke="#777" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+          <!-- Dust particles -->
+          <circle cx="113" cy="57" r="2.8" fill="#8B6914" style="animation:exc-dust-a 2.4s ease-out infinite"/>
+          <circle cx="119" cy="61" r="2" fill="#8B6914" style="animation:exc-dust-a 2.4s ease-out 0.25s infinite"/>
+          <circle cx="108" cy="63" r="2.3" fill="#8B6914" style="animation:exc-dust-a 2.4s ease-out 0.5s infinite"/>
+        </svg>
+        <style>
+          @keyframes exc-boom-a   { 0%{transform:rotate(0deg)} 38%{transform:rotate(-16deg)} 62%{transform:rotate(6deg)} 100%{transform:rotate(0deg)} }
+          @keyframes exc-arm-a    { 0%{transform:rotate(0deg)} 38%{transform:rotate(20deg)}  62%{transform:rotate(-8deg)} 100%{transform:rotate(0deg)} }
+          @keyframes exc-bucket-a { 0%{transform:rotate(0deg)} 38%{transform:rotate(18deg)}  62%{transform:rotate(-6deg)} 100%{transform:rotate(0deg)} }
+          @keyframes exc-dust-a   { 0%{transform:translate(0,0);opacity:.8} 60%{transform:translate(-8px,-14px);opacity:.4} 100%{transform:translate(-14px,-26px);opacity:0} }
+        </style>
+      </div>
       <h1 class="splash-title">MINE<span>GUARD</span></h1>
       <p class="splash-sub">Mining Safety Companion</p>
       <div class="splash-aml-logo">
@@ -34,7 +90,26 @@
     <!-- HEADER -->
     <header class="app-header">
       <div class="header-left">
-        <span class="header-icon">⛏️</span>
+        <span class="header-icon" style="display:inline-flex;align-items:center;line-height:1;">
+          <svg viewBox="0 0 120 78" xmlns="http://www.w3.org/2000/svg" width="28" height="18" style="overflow:visible;filter:drop-shadow(0 0 5px rgba(245,197,24,0.5))">
+            <rect x="6" y="59" width="72" height="13" rx="6.5" fill="#1e2035" stroke="#f5c518" stroke-width="2"/>
+            <circle cx="13" cy="65.5" r="6.2" fill="#12141f" stroke="#f5c518" stroke-width="2"/>
+            <circle cx="71" cy="65.5" r="6.2" fill="#12141f" stroke="#f5c518" stroke-width="2"/>
+            <rect x="10" y="37" width="54" height="26" rx="3" fill="#e8b800" stroke="#b88e00" stroke-width="2"/>
+            <rect x="42" y="40" width="18" height="14" rx="2" fill="#1a2a3a" stroke="#2ec4b6" stroke-width="1.5"/>
+            <rect x="40" y="33" width="26" height="7" rx="2" fill="#d4a800"/>
+            <rect x="7" y="41" width="15" height="17" rx="2" fill="#c49a00"/>
+            <g style="transform-origin:57px 37px;animation:exc-boom-a 2.4s ease-in-out infinite">
+              <line x1="57" y1="37" x2="90" y2="14" stroke="#d4a800" stroke-width="6.5" stroke-linecap="round"/>
+              <g style="transform-origin:90px 14px;animation:exc-arm-a 2.4s ease-in-out infinite">
+                <line x1="90" y1="14" x2="108" y2="33" stroke="#c49a00" stroke-width="5.5" stroke-linecap="round"/>
+                <g style="transform-origin:108px 33px;animation:exc-bucket-a 2.4s ease-in-out infinite">
+                  <path d="M108 33 L121 37 L117 54 L104 52 Z" fill="#f5c518" stroke="#b88e00" stroke-width="2"/>
+                </g>
+              </g>
+            </g>
+          </svg>
+        </span>
         <span class="header-title">MINE<span>GUARD</span></span>
       </div>
       <div class="header-right">
@@ -99,28 +174,74 @@
             <h2 id="heroTitle">Stay Safe.<br/>Work Smart.</h2>
             <p id="heroSub">Your on-site mining safety companion. Works fully offline.</p>
           </div>
-          <div class="hero-badge">⛏️</div>
+          <div class="hero-badge" style="display:flex;align-items:center;justify-content:center;line-height:1;">
+            <svg class="exc-svg-hero" viewBox="0 0 120 78" xmlns="http://www.w3.org/2000/svg" width="72" height="46" style="overflow:visible;filter:drop-shadow(0 4px 14px rgba(245,197,24,0.4))">
+          <!-- Tracks -->
+          <rect x="6" y="59" width="72" height="13" rx="6.5" fill="#1e2035" stroke="#f5c518" stroke-width="1.6"/>
+          <circle cx="13" cy="65.5" r="6.2" fill="#12141f" stroke="#f5c518" stroke-width="1.6"/>
+          <circle cx="71" cy="65.5" r="6.2" fill="#12141f" stroke="#f5c518" stroke-width="1.6"/>
+          <circle cx="29" cy="65.5" r="3.8" fill="#1e2035" stroke="#f5c518" stroke-width="1"/>
+          <circle cx="46" cy="65.5" r="3.8" fill="#1e2035" stroke="#f5c518" stroke-width="1"/>
+          <circle cx="59" cy="65.5" r="3.8" fill="#1e2035" stroke="#f5c518" stroke-width="1"/>
+          <!-- Machine body -->
+          <rect x="10" y="37" width="54" height="26" rx="3" fill="#e8b800" stroke="#b88e00" stroke-width="1.5"/>
+          <!-- Cab window -->
+          <rect x="42" y="40" width="18" height="14" rx="2" fill="#1a2a3a" stroke="#2ec4b6" stroke-width="1.2"/>
+          <line x1="51" y1="40" x2="51" y2="54" stroke="#2ec4b6" stroke-width="0.8" opacity="0.5"/>
+          <!-- Cab roof -->
+          <rect x="40" y="33" width="26" height="7" rx="2" fill="#d4a800" stroke="#b88e00" stroke-width="1.2"/>
+          <!-- Counterweight block -->
+          <rect x="7" y="41" width="15" height="17" rx="2" fill="#c49a00" stroke="#906e00" stroke-width="1"/>
+          <!-- ANIMATED BOOM GROUP -->
+          <g style="transform-origin:57px 37px;animation:exc-boom-a 2.4s ease-in-out infinite">
+            <line x1="57" y1="37" x2="90" y2="14" stroke="#d4a800" stroke-width="6.5" stroke-linecap="round"/>
+            <line x1="56" y1="37" x2="89" y2="14" stroke="#e8b800" stroke-width="3" stroke-linecap="round" opacity="0.4"/>
+            <g style="transform-origin:90px 14px;animation:exc-arm-a 2.4s ease-in-out infinite">
+              <line x1="90" y1="14" x2="108" y2="33" stroke="#c49a00" stroke-width="5.5" stroke-linecap="round"/>
+              <g style="transform-origin:108px 33px;animation:exc-bucket-a 2.4s ease-in-out infinite">
+                <path d="M108 33 L121 37 L117 54 L104 52 Z" fill="#f5c518" stroke="#b88e00" stroke-width="1.6"/>
+                <line x1="107" y1="52" x2="105" y2="60" stroke="#8a6600" stroke-width="2.2" stroke-linecap="round"/>
+                <line x1="112" y1="53" x2="111" y2="61" stroke="#8a6600" stroke-width="2.2" stroke-linecap="round"/>
+                <line x1="117" y1="52" x2="117" y2="60" stroke="#8a6600" stroke-width="2.2" stroke-linecap="round"/>
+              </g>
+            </g>
+          </g>
+          <!-- Hydraulic cylinders (static look) -->
+          <line x1="62" y1="37" x2="82" y2="20" stroke="#777" stroke-width="2.5" stroke-linecap="round" opacity="0.6"/>
+          <line x1="90" y1="14" x2="100" y2="27" stroke="#777" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+          <!-- Dust particles -->
+          <circle cx="113" cy="57" r="2.8" fill="#8B6914" style="animation:exc-dust-a 2.4s ease-out infinite"/>
+          <circle cx="119" cy="61" r="2" fill="#8B6914" style="animation:exc-dust-a 2.4s ease-out 0.25s infinite"/>
+          <circle cx="108" cy="63" r="2.3" fill="#8B6914" style="animation:exc-dust-a 2.4s ease-out 0.5s infinite"/>
+        </svg>
+            <style>
+          @keyframes exc-boom-a   { 0%{transform:rotate(0deg)} 38%{transform:rotate(-16deg)} 62%{transform:rotate(6deg)} 100%{transform:rotate(0deg)} }
+          @keyframes exc-arm-a    { 0%{transform:rotate(0deg)} 38%{transform:rotate(20deg)}  62%{transform:rotate(-8deg)} 100%{transform:rotate(0deg)} }
+          @keyframes exc-bucket-a { 0%{transform:rotate(0deg)} 38%{transform:rotate(18deg)}  62%{transform:rotate(-6deg)} 100%{transform:rotate(0deg)} }
+          @keyframes exc-dust-a   { 0%{transform:translate(0,0);opacity:.8} 60%{transform:translate(-8px,-14px);opacity:.4} 100%{transform:translate(-14px,-26px);opacity:0} }
+        </style>
+          </div>
         </div>
 
         <div class="quick-access">
           <h3 class="section-title" id="quickAccessTitle">Quick Access</h3>
           <div class="quick-grid">
-            <button class="quick-card" onclick="showTab('glossary', document.querySelector('[data-tab=&quot;glossary&quot;]'))">
+            <button class="quick-card" onclick="showTab('glossary', document.querySelector('[data-tab=glossary]'))">
               <span class="qc-icon">📖</span>
               <span class="qc-label" id="qc-glossary-label">Glossary</span>
               <span class="qc-count" id="glossaryCount">0 terms</span>
             </button>
-            <button class="quick-card" onclick="showTab('ppe', document.querySelector('[data-tab=&quot;ppe&quot;]'))">
+            <button class="quick-card" onclick="showTab('ppe', document.querySelector('[data-tab=ppe]'))">
               <span class="qc-icon">🦺</span>
               <span class="qc-label" id="qc-ppe-label">PPE Guide</span>
               <span class="qc-count" id="ppeQuickCount">12 items</span>
             </button>
-            <button class="quick-card" onclick="showTab('jsa', document.querySelector('[data-tab=&quot;jsa&quot;]'))">
+            <button class="quick-card" onclick="showTab('jsa', document.querySelector('[data-tab=jsa]'))">
               <span class="qc-icon">📋</span>
               <span class="qc-label" id="qc-jsa-label">JSA Tool</span>
               <span class="qc-count" id="qc-jsa-count">Risk form</span>
             </button>
-            <button class="quick-card danger" onclick="showTab('emergency', document.querySelector('[data-tab=&quot;emergency&quot;]'))">
+            <button class="quick-card danger" onclick="showTab('emergency', document.querySelector('[data-tab=emergency]'))">
               <span class="qc-icon">🚨</span>
               <span class="qc-label" id="qc-emergency-label">Emergency</span>
               <span class="qc-count" id="qc-emergency-count">Tap now</span>
@@ -422,70 +543,41 @@
   <script>
     (function() {
       const lang = localStorage.getItem('mineguard_lang') || 'en';
-      document.querySelectorAll('.lang-btn').forEach(function(b) {
+      document.querySelectorAll('.lang-btn').forEach(b => {
         b.classList.toggle('active', b.dataset.lang === lang);
       });
     })();
   </script>
 
-  <!-- Service Worker registration + Version check — single load listener -->
-  <script>
-    const CURRENT_VERSION = "1.0.0";
+<!-- Your existing app content above -->
+<!-- VERSION CHECK (FIXED) -->
+<script>
+const CURRENT_VERSION = "1.0.0";
 
-    // Register service worker (./sw.js caches all assets for offline use)
-    function registerSW() {
-      if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('./sw.js')
-          .then(function(reg) {
-            console.log('[MineGuard] SW registered, scope:', reg.scope);
-          })
-          .catch(function(err) {
-            console.warn('[MineGuard] SW registration failed:', err);
-          });
+async function checkForUpdate() {
+  try {
+    const res = await fetch("https://eman1992hub.github.io/AML-MineGuard/version.json");
+    const data = await res.json();
+
+    if (data.version && data.version !== CURRENT_VERSION) {
+      const msg =
+        "🚨 NEW UPDATE AVAILABLE\n\n" +
+        data.message +
+        "\n\nCurrent: " + CURRENT_VERSION +
+        "\nNew: " + data.version;
+
+      if (confirm(msg)) {
+        window.location.href = data.apk_url;
       }
     }
+  } catch (err) {
+    console.log("Update check failed", err);
+  }
+}
 
-    // Check for a new version on the server.
-    // If a newer version.json is found, prompt the user to reload —
-    // the service worker will fetch fresh assets on next load.
-    // NOTE: version.json must live at the root of this GitHub Pages repo.
-    async function checkForUpdate() {
-      try {
-        // Add cache-busting query so we always get the latest version.json
-        const res = await fetch('./version.json?t=' + Date.now(), {
-          cache: 'no-store'
-        });
-        if (!res.ok) return; // version.json not present — skip silently
-        const data = await res.json();
-
-        if (data.version && data.version !== CURRENT_VERSION) {
-          const msg =
-            '🚨 NEW UPDATE AVAILABLE\n\n' +
-            (data.message || 'A new version of MineGuard is ready.') +
-            '\n\nYour version: ' + CURRENT_VERSION +
-            '\nNew version:  ' + data.version +
-            '\n\nReload now to get the latest version?';
-
-          if (confirm(msg)) {
-            // Unregister the old service worker cache, then hard-reload
-            if ('serviceWorker' in navigator) {
-              const regs = await navigator.serviceWorker.getRegistrations();
-              await Promise.all(regs.map(function(r) { return r.unregister(); }));
-            }
-            window.location.reload(true);
-          }
-        }
-      } catch (err) {
-        // Network failure or missing version.json — fail silently
-        console.log('[MineGuard] Update check skipped:', err.message);
-      }
-    }
-
-    // Single load listener handles both SW registration and update check
-    window.addEventListener('load', function() {
-      registerSW();
-      setTimeout(checkForUpdate, 3000); // delay to avoid blocking app init
-    });
-  </script>
+window.addEventListener("load", () => {
+  setTimeout(checkForUpdate, 2000);
+});
+</script>
 </body>
 </html>
